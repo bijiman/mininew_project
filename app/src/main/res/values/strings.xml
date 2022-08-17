@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">UMini!</string>
+    <string name="mini">UMini!</string>
+    <string name="snake">SNAKE</string>
+    <string name="score">SCORE</string>
+    <string name="_2048">2048</string>
+    <string name="tic_tac_toe">TIC TAC TOE</string>
+    <string name="restart">RESTART</string>
+</resources>
