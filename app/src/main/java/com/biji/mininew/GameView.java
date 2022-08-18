@@ -1,5 +1,6 @@
 package com.biji.mininew;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.graphics.Canvas;
@@ -10,6 +11,8 @@ import android.os.Looper;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
@@ -109,14 +112,30 @@ public class GameView extends View {
             case SNAKE:
                 mGameOver = true;
                 AppDatabase db1 = AppDatabase.getDbInstance(getContext());
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-//                builder.setMessage("Your Score = " + db1.scoreDao().getCount());
-//                builder.setTitle("Game Over Asu");
-//                builder.setCancelable(true);
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Your Score = " + db1.scoreDao().getCount());
+                builder.setTitle("Game Over");
+                builder.setCancelable(true);
+                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.cancel();
+                    }
+                });
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        builder.show();
+                    }
+                });
                 Log.d("score","skor anda : " + db1.scoreDao().getCount());
 
                 break;
         }
+    }
+
+    private void runOnUiThread(Runnable runnable) {
+        mHandler.post(runnable);
     }
 
     public void setDirection(Direction dir) {
