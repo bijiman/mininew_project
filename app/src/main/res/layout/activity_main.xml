@@ -81,6 +81,6 @@
         app:layout_constraintRight_toRightOf="parent"
         android:text="@string/tic_tac_toe"
         android:textColor="@color/white"
-        android:id="@+id/tictactoe"/>
+        android:id="@+id/tictactoeBtn"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

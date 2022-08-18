@@ -23,6 +23,24 @@ public class MainActivity extends AppCompatActivity {
             startActivity(new Intent(this, snakeActivity.class));
         });
 
+        MaterialButton comingSoonBtn = findViewById(R.id.btn2048);
+        comingSoonBtn.setOnClickListener(view -> {
+            finish();
+            startActivity(new Intent(this, ComingSoonActivity.class));
+        });
+
+        MaterialButton tictactoeBtn = findViewById(R.id.tictactoeBtn);
+        tictactoeBtn.setOnClickListener(view -> {
+            finish();
+            startActivity(new Intent(this, ComingSoonActivity.class));
+        });
+
+        MaterialButton scoreBtn = findViewById(R.id.scoreBtn);
+        scoreBtn.setOnClickListener(view -> {
+            finish();
+            startActivity(new Intent(this, ScoreActivity.class));
+        });
+
 //        MaterialButton scoreBtn = findViewById(R.id.scoreBtn);
 //        scoreBtn.setOnClickListener(view -> startActivity(new Intent(this, ScoreActivity.class)));
     }
