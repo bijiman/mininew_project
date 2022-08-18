@@ -15,7 +15,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         MaterialButton snakeBtn = findViewById(R.id.snakeBtn);
-        snakeBtn.setOnClickListener(view -> startActivity(new Intent(this, snakeActivity.class)));
+        snakeBtn.setOnClickListener(view -> {
+            finish();
+            startActivity(new Intent(this, snakeActivity.class));
+        });
 
 //        MaterialButton scoreBtn = findViewById(R.id.scoreBtn);
 //        scoreBtn.setOnClickListener(view -> startActivity(new Intent(this, ScoreActivity.class)));
