@@ -7,4 +7,5 @@
     <string name="tic_tac_toe">TIC TAC TOE</string>
     <string name="restart">RESTART</string>
     <string name="back">BACK</string>
+    <string name="saved_score">SAVED SCORE</string>
 </resources>
