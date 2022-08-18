@@ -36,12 +36,16 @@ public class snakeActivity extends AppCompatActivity {
 
         Button button = findViewById(R.id.restart_btn);
         button.setOnClickListener(v -> {
+            AppDatabase db = AppDatabase.getDbInstance(getApplicationContext());
+            db.scoreDao().deleteAll();
             finish();
             startActivity(new Intent(this, snakeActivity.class));
         });
 
         Button button1 = findViewById(R.id.back_btn);
         button1.setOnClickListener(v -> {
+            AppDatabase db = AppDatabase.getDbInstance(getApplicationContext());
+            db.scoreDao().deleteAll();
             finish();
             startActivity(new Intent(this, MainActivity.class));
         });

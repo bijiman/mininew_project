@@ -144,16 +144,12 @@ public class GameView extends View {
         builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
-                AppDatabase db = AppDatabase.getDbInstance(getContext());
-                db.scoreDao().deleteAll();
                 dialog.cancel();
             }
         });
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
-                AppDatabase db = AppDatabase.getDbInstance(getContext());
-                db.scoreDao().deleteAll();
                 builder.show();
             }
         });

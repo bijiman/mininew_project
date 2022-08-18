@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 
+import com.biji.mininew.database.AppDatabase;
 import com.google.android.material.button.MaterialButton;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +17,8 @@ public class MainActivity extends AppCompatActivity {
 
         MaterialButton snakeBtn = findViewById(R.id.snakeBtn);
         snakeBtn.setOnClickListener(view -> {
+            AppDatabase db = AppDatabase.getDbInstance(getApplicationContext());
+            db.scoreDao().deleteAll();
             finish();
             startActivity(new Intent(this, snakeActivity.class));
         });
