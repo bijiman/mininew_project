@@ -18,6 +18,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AlertDialog;
 
 import com.biji.mininew.database.AppDatabase;
+import com.biji.mininew.database.HistoryScore;
 import com.biji.mininew.database.Score;
 
 import java.util.LinkedList;
@@ -111,12 +112,30 @@ public class GameView extends View {
                 break;
             case SNAKE:
                 mGameOver = true;
+                AppDatabase db1 = AppDatabase.getDbInstance(getContext());
+                saveGame(db1.scoreDao().getCount());
                 builderMsg();
                 break;
         }
     }
 
-    public void builderMsg(){
+    public void saveGame(final int history_score) {
+        Executors.newSingleThreadExecutor().execute(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase db = AppDatabase.getDbInstance(getContext());
+                db.historyScoreDao().insertHistory(new HistoryScore(history_score));
+                mHandler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Log.d("history_score", "score has been saved");
+                    }
+                });
+            }
+        });
+    }
+
+    private void builderMsg(){
         AppDatabase db1 = AppDatabase.getDbInstance(getContext());
         AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
         builder.setMessage("Your Score = " + db1.scoreDao().getCount());
