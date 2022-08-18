@@ -111,31 +111,33 @@ public class GameView extends View {
                 break;
             case SNAKE:
                 mGameOver = true;
-                AppDatabase db1 = AppDatabase.getDbInstance(getContext());
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setMessage("Your Score = " + db1.scoreDao().getCount());
-                builder.setTitle("Game Over");
-                builder.setCancelable(true);
-                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        AppDatabase db = AppDatabase.getDbInstance(getContext());
-                        db.scoreDao().deleteAll();
-                        dialog.cancel();
-                    }
-                });
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        AppDatabase db = AppDatabase.getDbInstance(getContext());
-                        db.scoreDao().deleteAll();
-                        builder.show();
-                    }
-                });
-                Log.d("score","skor anda : " + db1.scoreDao().getCount());
-
+                builderMsg();
                 break;
         }
+    }
+
+    public void builderMsg(){
+        AppDatabase db1 = AppDatabase.getDbInstance(getContext());
+        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+        builder.setMessage("Your Score = " + db1.scoreDao().getCount());
+        builder.setTitle("Game Over");
+        builder.setCancelable(true);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                AppDatabase db = AppDatabase.getDbInstance(getContext());
+                db.scoreDao().deleteAll();
+                dialog.cancel();
+            }
+        });
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                AppDatabase db = AppDatabase.getDbInstance(getContext());
+                db.scoreDao().deleteAll();
+                builder.show();
+            }
+        });
     }
 
     private void runOnUiThread(Runnable runnable) {
